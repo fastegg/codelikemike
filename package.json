@@ -16,6 +16,7 @@
   "dependencies": {
     "@types/jquery": "^3.3.2",
     "foundation-sites": "~6.4.0",
+    "gulp-git": "^2.7.0",
     "gulp-typescript": "^4.0.2",
     "jquery": ">=3.0.0",
     "motion-ui": "~1.2.2",

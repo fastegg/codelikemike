@@ -12,6 +12,8 @@
 			"**/CVS": true,
 			"**/.DS_Store": true,
 			"build": true,
+			"publish": true,
+			"public/clientjs": true,
 		}
 	}
 }
