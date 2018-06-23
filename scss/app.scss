@@ -50,3 +50,8 @@
 
 @include motion-ui-transitions;
 @include motion-ui-animations;
+
+@import 'components/_menu';
+@import 'components/_content';
+
+@import 'components/_effects';

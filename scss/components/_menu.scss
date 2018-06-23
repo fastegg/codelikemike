@@ -1,0 +1,25 @@
+.sidemenu {
+  @include foundation-menu;
+  background: #353f55;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 700;
+}
+
+.nested {
+  font-size: 80%;
+  padding: 0.35rem 1rem;
+}
+
+.sidemenu a {
+  color: #e5e5e5
+}
+.sidemenu a:focus {
+  outline: none;
+  color: #b46357;
+}
+
+.sidemenu a:hover {
+  outline: none;
+  background: #e5e5e5;
+  color: #b46357;
+}

@@ -6,11 +6,13 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "sourceMap": true,
-    "outDir": "build/clientjs",
+    "outDir": "build/",
     "allowJs": true,
+    "jsx": "react",
   },
   "include": [
-    "clientjs/**/*"
+    "clientjs/**/*",
+    "server/**/*",
   ],
   "exclude": [
       "node_modules"

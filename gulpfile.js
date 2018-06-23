@@ -7,6 +7,8 @@ var tsProject = tsc.createProject('tsconfig.json');
 var webpack = require('webpack');
 var config = require('./webpack.config');
 var fs = require('fs');
+var nodemon = require('gulp-nodemon');
+var rename = require('gulp-rename');
 
 var sassPaths = [
   'node_modules/foundation-sites/scss',
@@ -26,10 +28,14 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('public/css'));
 });
 
+gulp.task('404Hack', function() {
+  return gulp.src('public/index.html').pipe(rename('404.html')).pipe(gulp.dest('./public'));
+});
+
 gulp.task('typescript', () => {
   var tsResult = tsProject.src().pipe(tsProject());
 
-  return tsResult.js.pipe(gulp.dest('build/clientjs'));
+  return tsResult.js.pipe(gulp.dest('build/'));
 });
 
 gulp.task('webpack', ['typescript'], function(callback) {
@@ -43,9 +49,20 @@ gulp.task('webpack', ['typescript'], function(callback) {
 	});
 });
 
-gulp.task('default', ['sass', 'typescript', 'webpack'], function() {
+gulp.task('devserver', ['404Hack', 'sass', 'typescript', 'webpack'], function() {
+  var stream = nodemon({
+    script: 'build/server/server.js',
+    ext: 'js',
+  });
+  stream.on('restart', () => {
+    console.log('Restarted dev server');
+  });
+});
+
+gulp.task('default', ['404Hack', 'sass', 'typescript', 'webpack', 'devserver'], function() {
   gulp.watch(['scss/**/*.scss'], ['sass']);
   gulp.watch(['clientjs/**/*'], ['typescript', 'webpack']);
+  gulp.watch(['server/**/*'], ['typescript']);
 });
 
 gulp.task('cloneRepo', function(callback) {

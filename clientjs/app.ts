@@ -1,6 +1,7 @@
 import * as $ from 'jquery';
 import 'foundation-sites';
 import 'what-input';
+import './client';
 
 $(document).foundation();
-console.log('loading...');
+console.log('loaded...');

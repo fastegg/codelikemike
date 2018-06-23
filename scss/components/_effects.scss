@@ -1,0 +1,12 @@
+.float {
+  margin: 10px;
+  box-shadow: 1px 1px 5px #555;
+  border-radius: 10px;
+}
+
+.float:hover {
+  box-shadow: 3px 3px 5px #555;
+}
+.float:active{
+  box-shadow: inset 0 0 5px #333;
+};
