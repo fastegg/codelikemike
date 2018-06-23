@@ -9,13 +9,12 @@ interface RouterState {
 
 export class Router extends React.Component<{}, {location:Location, action: Action}> {
   state: RouterState = {
-    location: null,
-    action: null,
+    location: history.location,
+    action: history.action,
   };
-  unlisten: ()=>void;
+  unlisten: () => void;
   componentDidMount() {
     this.unlisten = history.listen((location, action) => {
-      console.log(location, action);
       this.setState({location, action})
     });
   }
@@ -24,14 +23,29 @@ export class Router extends React.Component<{}, {location:Location, action: Acti
     this.unlisten();
   }
 
+  goToHome = () => {
+    go('');
+  }
+
   goToBlog = () => {
     go('/blog');
   }
 
+  goToAbout = () => {
+    go('/about');
+  }
+
+  goToContact = () => {
+    go('/contact');
+  }
+
   render() : JSX.Element {
     return <div>
-      <div>this is the router speaking... the location is {this.state.location ? this.state.location.pathname : 'home'}</div>
-      <div className="button" onClick={this.goToBlog}>go to the blog</div>
+      <div className="button" onClick={this.goToHome}>Home</div>
+      <div className='button' onClick={this.goToAbout}>About</div>
+      <div className="button" onClick={this.goToBlog}>Blog</div>
+      <div className='button' onClick={this.goToContact}>Contact</div>
+      <div>this is the router speaking... the location is {this.state.location.pathname}</div>
     </div>;
   }
 }
